@@ -10,48 +10,45 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false, unique = true, length = 45)
 	private String email;
-	
+
 	@Column(nullable = false, length = 64)
 	private String password;
-	
+
 	@Column(name = "first_name", nullable = false, length = 20)
 	private String firstName;
-	
+
 	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
-	
-	
 
 	
-
-
-
 	public User() {
-		
-	
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 
-
-	
-
-
+	public User(Long id, String email, String password, String firstName, String lastName, Cart cart) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.cart = cart;
+	}
 
 	public Long getId() {
 		return id;
@@ -93,35 +90,14 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public Cart getCart() {
+		return cart;
+	}
 
-
-	
-
-
-
-	public User get() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 
 
-	
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	}
-	
-	
-	
+}
