@@ -12,11 +12,8 @@ public class CartServices {
 
 	@Autowired
 	private CartRepository cartRepository;
-	
-@Autowired
-private UserService userService;
 
-	public void saveCart(Cart products, User user) {
+	public void saveCart(Cart products) {
 		if(cartRepository.existsByProductIdAndUserEmail(products.getProductId(), products.getUserEmail())) {
 			Cart foundCart = cartRepository.findByProductIdAndUserEmail(products.getProductId(), products.getUserEmail());
 			foundCart.setQuantity(foundCart.getQuantity()+1);
@@ -24,8 +21,6 @@ private UserService userService;
 		}else {
 			
 			cartRepository.save(products);
-//			user.setCart(products);
-		userService.saveUser(user);
 		}
 		
 

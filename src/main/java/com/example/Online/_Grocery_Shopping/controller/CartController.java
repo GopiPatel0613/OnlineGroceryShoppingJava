@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Online._Grocery_Shopping.entity.Cart;
 import com.example.Online._Grocery_Shopping.entity.CartServices;
-import com.example.Online._Grocery_Shopping.entity.User;
-import com.example.Online._Grocery_Shopping.entity.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -24,15 +21,12 @@ public class CartController {
 
 	@Autowired
 	CartServices cartSer;
-	@Autowired
-	UserService userSer;
 
 
-	@RequestMapping(value = "/saveCart/{userId}", method = RequestMethod.POST)
-	public ResponseEntity<Cart> saveProducts(@RequestBody Cart products,@PathVariable Long userId) {
-		//User user = userSer.getUserById(userId);
+	@RequestMapping(value = "/saveCart", method = RequestMethod.POST)
+	public ResponseEntity<Cart> saveProducts(@RequestBody Cart products) {
 
-		//cartSer.saveCart(products,user);
+		cartSer.saveCart(products);
 		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 
