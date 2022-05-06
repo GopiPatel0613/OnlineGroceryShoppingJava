@@ -14,7 +14,8 @@ public class Cart {
 	private Long cId;
 	private int quantity;
 	private String userEmail;
-	private int productId;
+	private Long productId;
+	
 	public Long getcId() {
 		return cId;
 	}
@@ -33,13 +34,13 @@ public class Cart {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public int getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	public Cart(Long cId, int quantity, String userEmail, int productId) {
+	public Cart(Long cId, int quantity, String userEmail, Long productId) {
 		super();
 		this.cId = cId;
 		this.quantity = quantity;
@@ -50,6 +51,8 @@ public class Cart {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	
