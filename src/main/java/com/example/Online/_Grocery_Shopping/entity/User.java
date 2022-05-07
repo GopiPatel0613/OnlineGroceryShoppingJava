@@ -1,13 +1,10 @@
 package com.example.Online._Grocery_Shopping.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,24 +27,18 @@ public class User {
 	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id")
-	private Cart cart;
-
-	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Long id, String email, String password, String firstName, String lastName, Cart cart) {
+	public User(Long id, String email, String password, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.cart = cart;
 	}
 
 	public Long getId() {
@@ -89,15 +80,5 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
-
 
 }
