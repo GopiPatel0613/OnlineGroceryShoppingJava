@@ -37,6 +37,19 @@ public class CartController {
 		return new ResponseEntity<>(prod, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/getCartTotal", method = RequestMethod.GET)
+	public ResponseEntity<Double> sumCartTotal(@RequestParam String email) {
+
+		List<Cart> prod = cartSer.findAllCartsByEmail(email);
+		Double totalResult= 0.0; 
+		for(int i=0; i<prod.size();i++){
+			totalResult += prod.get(i).getProductTotal();
+		}
+		return new ResponseEntity<>(totalResult, HttpStatus.OK);
+
+	}
+	
 
 	@RequestMapping(value = "/updateCart", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateCart(Cart cart) {
@@ -49,6 +62,13 @@ public class CartController {
 	public ResponseEntity<String> deleteCart(String email) {
 
 		cartSer.deleteCart(email);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/deleteCartProduct", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteCartProductById(@RequestParam Long id) {
+
+		cartSer.deleteCartById(id);
 		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 

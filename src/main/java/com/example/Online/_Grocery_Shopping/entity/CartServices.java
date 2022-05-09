@@ -17,9 +17,10 @@ public class CartServices {
 		if(cartRepository.existsByProductIdAndUserEmail(products.getProductId(), products.getUserEmail())) {
 			Cart foundCart = cartRepository.findByProductIdAndUserEmail(products.getProductId(), products.getUserEmail());
 			foundCart.setQuantity(foundCart.getQuantity()+1);
+			foundCart.setProductTotal((foundCart.getQuantity())*foundCart.getProductPrice());
 			cartRepository.flush();
 		}else {
-			
+			products.setProductTotal((products.getQuantity()+1)*products.getProductPrice());
 			cartRepository.save(products);
 		}
 		
@@ -37,6 +38,11 @@ public class CartServices {
 	}
 	public void deleteCart(String email) {
 		cartRepository.deleteByUserEmail(email);
+		cartRepository.flush();
+	}
+	
+	public void deleteCartById(Long id) {
+		cartRepository.deleteById(id);
 		cartRepository.flush();
 	}
 
