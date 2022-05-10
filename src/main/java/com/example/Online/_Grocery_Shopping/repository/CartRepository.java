@@ -14,7 +14,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 	@Query(value = "SELECT * FROM products p CROSS JOIN cart c ON c.product_id=p.p_id where c.user_email=?1", nativeQuery = true)
 	List<Cart> findAllByUserEmail(String email);
 
-	Cart findByUserEmail(String email);
+	Cart findByUserEmailAndProductId(String email, Long id);
 	void deleteByUserEmail(String email);
 	boolean existsByProductIdAndUserEmail(Long getpId, String Email);
 	Cart findByProductIdAndUserEmail(Long getpId, String Email);

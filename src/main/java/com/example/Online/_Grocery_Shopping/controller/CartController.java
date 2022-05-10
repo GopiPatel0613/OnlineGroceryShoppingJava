@@ -52,7 +52,7 @@ public class CartController {
 	
 
 	@RequestMapping(value = "/updateCart", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateCart(Cart cart) {
+	public ResponseEntity<String> updateCart(@RequestBody List<Cart> cart) {
 
 		cartSer.updateCart(cart);
 		return new ResponseEntity<>("Success", HttpStatus.OK);
