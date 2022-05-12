@@ -21,7 +21,7 @@ public class CartServices {
 			foundCart.setProductTotal((foundCart.getQuantity()) * foundCart.getProductPrice());
 			cartRepository.flush();
 		} else {
-			products.setProductTotal((products.getQuantity() + 1) * products.getProductPrice());
+			products.setProductTotal((products.getQuantity()) * products.getProductPrice());
 			cartRepository.save(products);
 		}
 
